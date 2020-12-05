@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manager View</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="managerHome.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="./login.html">Performance Review</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="./managerHome.html">Manager View</a></li>
+      <li class="disabled"><a href="#">Employee View</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><form method="POST" action="/logout">
+        <button type="submit"> Sign Out </button>
+      </form></li>
+<!--      <li><a href="./login.html"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li> -->
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+	
+  <!-- <input type="hidden" id="empnum" value="<%= typeof empnum!='undefined' ? empnum : '' %>">
+  <input type="hidden" id="deptnum" value="<%= typeof deptnum!='undefined' ? deptnum : '' %>"> -->
+    	<h3>Employees Lists</h3>
+    	<table class="table table-hover" id ="empData">
+                <tbody class = "tbody">
+                    <tr>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Hire Date</td>
+                        <td>Rate</td>
+                        <td>Update</td>
+                    </tr>
+                </tbody>
+	</table>
+
+  </div>
+
+
+</body>
+
+</html>

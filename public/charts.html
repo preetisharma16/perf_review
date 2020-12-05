@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Employee Metric chart</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+      <link rel='stylesheet' href='/stylesheets/style.css'/>
+    </script>
+  </head>
+  <body>
+    <ul class="nav navbar-nav navbar-right">
+      <li><form method="POST" action="/logout">
+        <button type="submit" > Sign Out </button>
+      </form></li>
+</ul>
+  <div id="container"></div>
+    <script>
+  //    document.getElementById('info-button').addEventListener(
+        // 'click',
+        function getEmployeeRating() {
+
+          var url = window.location.href
+
+          var url_split = url.split('/')
+          console.log(url_split)
+
+          var emp_no = url_split[url_split.length-1];
+          console.log(url_split[url_split.length-1])
+
+          console.log('inside script for info button !!');
+
+         // var emp_no = document.getElementById('en').value;
+          var xhr = new XMLHttpRequest();
+          var data = new FormData();
+
+          console.log('print the employee-no: ' + emp_no);
+
+          $(function () {
+            console.log("Inside inner function")
+            var processed_json = new Array();
+            var index = 0;
+            $.getJSON(
+              'http://localhost:3000/getEmployeeRating?emp_no=' + emp_no,
+              function (data) {
+                console.log(data)
+                // Populate series
+                Object.entries(data[0]).forEach(
+                  ([key_in, value_in]) => (processed_json[index++] = value_in)
+                );
+
+                //// draw chart
+
+                $('#container').highcharts({
+                  colors: [
+                    '#2f7ed8',
+                    '#910000',
+                    '#8bbc21',
+                    '#1aadce',
+                    '#910000',
+                  ],
+                  chart: {
+                    type: 'column',
+                  },
+
+                  //
+                  title: {
+                    text: 'Employee Ratings',
+                  },
+                  //   xAxis: {
+                  //     type: 'category',
+                  //     allowDecimals: false,
+                  //     title: {
+                  //       text: '',
+                  //     },
+                  //   },
+                  xAxis: {
+                    categories: [
+                      'Punctuality & Discipline',
+                      'Execution Of Duties',
+                      'Learning & Development',
+                      'Team Cooperation',
+                      'Responsibility Taken',
+                    ],
+                  },
+
+                  yAxis: {
+                    title: {
+                      text: 'Rating',
+                    },
+                  },
+                  series: [
+                    {
+                      name: 'Attributes',
+                      data: processed_json,
+                    },
+                  ],
+                  //
+                });
+              }
+            );
+          });
+
+          //   data.append('inputFile', fname.files[0], fname.value);
+          var upload_url =
+            'http://localhost:3000/getEmployeeRating?emp_no=' + emp_no;
+          xhr.open('GET', upload_url, false);
+          xhr.send(data);
+        };
+        getEmployeeRating()
+      // downloading image
+      //$('#export-pdf').click(function () {
+      //chart.exportChart({
+      //type: 'application/pdf',
+      //filename: 'my-pdf',
+      //});
+      //});
+    </script>
+  </body>
+</html>

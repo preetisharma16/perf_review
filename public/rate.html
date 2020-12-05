@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <style>
+      div {
+        background-image: url('eval.jpeg');
+      }
+      </style>
+      </head>
+  </head>
+  <body>
+    <h1>Fill Out Metrcis Form</h1>
+    <h4>Employee Metric (0-10)</h4>
+    <a href="/updaterate.html">Update-Rating</a>
+    <a href="/login.html">Home-page</a>
+    <a href="/managerHome.html">Previous</a>
+    <img src="eval.jpeg" width="500" height="500" >
+    
+    
+    <form id="form1">
+      <label for="fname">EmpNo</label>
+      <input type="text" id="en" name="fname" /><br /><br />
+      <label for="lname">PunctualityAndDiscipline</label>
+      <input type="text" id="pa" name="lname" /><br /><br />
+      <label for="fname">ExecutionOfDuties</label>
+      <input type="text" id="ed" name="fname" /><br /><br />
+      <label for="lname">LearningAndDevelopment</label>
+      <input type="text" id="ld" name="lname" /><br /><br />
+      <label for="fname">TeamCooperation</label>
+      <input type="text" id="tc" name="fname" /><br /><br />
+      <label for="lname">ResponsibilityTaken</label>
+      <input type="text" id="rt" name="lname" /><br /><br />
+      <input type="button" value="Submit Rating" id='upload-button'/>
+      
+    </form>
+    <script>
+      document.getElementById('upload-button').addEventListener(
+        'click',
+        function () {
+          var emp_no =  document.getElementById('en').value;
+          var metric1 = document.getElementById('pa').value;
+          var metric2 = document.getElementById('ed').value;
+          var metric3 = document.getElementById('ld').value;
+          var metric4 = document.getElementById('tc').value;
+          var metric5 = document.getElementById('rt').value;
+
+          var xhr = new XMLHttpRequest();
+          var data = new FormData();
+          
+          var addrating_url =
+            'http://localhost:3000/addRating?employeeno=' +
+            emp_no +
+            '&metric1=' +
+            metric1+
+            '&metric2=' +
+            metric2+
+            '&metric3=' +
+            metric3+
+            '&metric4=' +
+            metric4+
+            '&metric5=' +
+            metric5;
+            
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+              // window.alert('xhr status: ' + xhr.status);
+              if (xhr.status == 200) {
+                // var responsexhr = eval('(' + xhr.responseText + ')');
+                alert('Employee Rating added sucessfully !');
+                // window.location = '/';
+              } else {
+                alert('not 200');
+                window.location = '/';
+              }
+            } else {
+              
+            }
+          };
+          xhr.open('POST', addrating_url, true);
+          xhr.send(data);
+          resetForm();
+          
+        }
+                );
+        function resetForm(){
+        
+          document.getElementById('en').value = "";
+          document.getElementById('pa').value ="";
+          document.getElementById('ed').value="";
+          document.getElementById('ld').value="";
+          document.getElementById('tc').value="";
+          document.getElementById('rt').value="";
+        }
+        
+    </script>
+    
+  </body>
+</html>

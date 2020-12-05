@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th>Emp no</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Rate</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody id="data"></tbody>
+      </table>
+    </div>
+    <script>
+      fetch('http://localhost:3000/getEmployees?dept_no=d005').then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+          if (data.length > 0) {
+            var temp = '';
+            //start for loop
+            data.forEach((u) => {
+              temp += '<tr>';
+              temp += '<td>' + u.emp_no + '</td>';
+              temp += '<td>' + u.first_name + '</td>';
+              temp += '<td>' + u.last_name + '</td>';
+              temp +=
+                '<td><input type="button" ' +
+                '" class="downloadButton" value="Rate"/></td>';
+              temp +=
+                '<td><input type="button" ' +
+                '" class="deleteButton" value="Update"/></td></tr>';
+            });
+            //end for loop
+            document.getElementById('data').innerHTML = temp;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Performance Review</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src ="./index.js"> </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="./login.html">Performance Review</a>
+    </div>
+        <!--
+    <ul class="nav navbar-nav">
+      <li class="disabled"><a href="./managerHome.html">Manager View</a></li>
+      <li class = "disabled" ><a href="#">Employee View</a></li>
+    </ul> -->
+    <ul class="nav navbar-nav navbar-right">
+  <!--    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<h1 style="text-align: center;">Welcome to Performance Review</h1>
+<!--
+
+<div class="container">
+	<div class="row">
+    		<div class="column">
+    			<label for="deptNumber">Please enter employee id:</label>
+    		</div>
+    		<div class="column">
+    			<input type="text" id="empID" name="empID" /> <br></br>
+    		</div>
+    		<div class="column">
+    			<input type="button" value="Submit" id="fetchdata" onClick= "checkEmployeeID()" />
+    		</div>
+  	</div>
+</div>
+-->
+
+<script>
+function checkEmployeeID() {
+    var b = document.getElementById('empID').value;
+    checkManager(encodeURIComponent(b));
+    //url = 'http\://localhost:3000/managerHome.html?empID=' + encodeURIComponent(b);
+
+    //document.location.href = url;
+}
+</script>
+
+
+</body>
+</html>
+
