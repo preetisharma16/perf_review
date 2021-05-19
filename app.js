@@ -4,6 +4,7 @@ const session = require('express-session');
 const { ExpressOIDC } = require('@okta/oidc-middleware');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+//var logger = require('morgan');
 var logger = require('morgan');
 
 var verifySession = require('./routes/verify');
